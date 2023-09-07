@@ -22,6 +22,10 @@ jobs:
           node-version: 18
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Debug labels
+        run:
+          echo "Pull Request Object: ${{ toJSON(github.event.pull_request) }}"
+
       - name: Install dependencies
         run: npm install
 
