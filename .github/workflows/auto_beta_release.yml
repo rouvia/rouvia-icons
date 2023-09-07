@@ -30,12 +30,11 @@ jobs:
 
       - name: Bump version and publish
         run: |
-          labels=${{ toJSON(github.event.pull_request.labels.*.name) }}
-          if contains( labels, 'major' ); then
+          if contains( github.event.pull_request.labels.*.name, 'major' ); then
             npm version major --preid=beta --force -m "Upgrade for major changes"
-          elif contains( labels, 'minor' ); then
+          elif contains( github.event.pull_request.labels.*.name, 'minor' ); then
             npm version minor --preid=beta --force -m "Upgrade for minor changes"
-          elif contains( labels, 'patch' ); then
+          elif contains( github.event.pull_request.labels.*.name, 'patch' ); then
             npm version patch --preid=beta --force -m "Upgrade for patches"
           else
             echo "No label or unknown label. Skipping publish."
