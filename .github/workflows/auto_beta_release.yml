@@ -28,21 +28,14 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Get PR Labels
-        run: |
-          labels=$(gh pr view https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }} --json labels -q '[.labels.nodes[].name]')
-          echo "Labels are: $labels"
-          echo "LABELS=$labels" >> $GITHUB_ENV
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-
       - name: Bump version and publish
         run: |
-          if [[ "${LABELS}" == *major* ]]; then
+          labels=${{ toJSON(github.event.pull_request.labels.*.name) }}
+          if contains( labels, 'major' ); then
             npm version major --preid=beta --force -m "Upgrade for major changes"
-          elif [[ "${LABELS}" == *minor* ]]; then
+          elif contains( labels, 'minor' ); then
             npm version minor --preid=beta --force -m "Upgrade for minor changes"
-          elif [[ "${LABELS}" == *patch* ]]; then
+          elif contains( labels, 'patch' ); then
             npm version patch --preid=beta --force -m "Upgrade for patches"
           else
             echo "No label or unknown label. Skipping publish."
