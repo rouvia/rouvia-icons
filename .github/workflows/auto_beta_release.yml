@@ -1,0 +1,50 @@
+name: Automated Beta Release
+
+on:
+  push:
+    branches:
+      - test-branch
+
+jobs:
+  build_and_publish:
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Bump version and publish
+        run: |
+          if [[ "${{ github.event.label.name }}" == "major" ]]; then
+            npm version major --preid=beta --force -m "Upgrade for major changes"
+          elif [[ "${{ github.event.label.name }}" == "minor" ]]; then
+            npm version minor --preid=beta --force -m "Upgrade for minor changes"
+          elif [[ "${{ github.event.label.name }}" == "patch" ]]; then
+            npm version patch --preid=beta --force -m "Upgrade for patches"
+          else
+            echo "No label or unknown label. Skipping publish."
+            exit 0
+          fi
+          npm publish --tag beta
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create GitHub Release
+        run: |
+          version=$(node -p "require('./package.json').version")
+          gh release create v$version -t "Beta Release v$version" -n "Beta Release v$version"
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
