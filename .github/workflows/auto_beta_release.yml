@@ -22,15 +22,6 @@ jobs:
           node-version: 18
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Get list of labels on the PR
-        id: get-labels
-        run: |
-          labels=$(gh pr view https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }} --json labels -q '.labels.nodes[].name | join(", ")')
-          echo "Labels on PR: $labels"
-          echo "PR_LABELS=$labels" >> $GITHUB_ENV
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-
       - name: Install dependencies
         run: npm install
 
