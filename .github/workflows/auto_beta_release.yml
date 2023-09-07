@@ -30,8 +30,8 @@ jobs:
 
       - name: Get PR Labels
         run: |
-          labels=$(gh pr view https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }} --json labels -q '.labels.nodes[].name | join(", ")')
-          echo "Labels: $labels"
+          labels=$(gh pr view https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }} --json labels -q '[.labels.nodes[].name]')
+          echo "Labels are: $labels"
           echo "LABELS=$labels" >> $GITHUB_ENV
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
