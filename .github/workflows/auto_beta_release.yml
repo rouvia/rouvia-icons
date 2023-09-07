@@ -28,21 +28,10 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Get PR Labels
-        run: echo "LABELS=$(echo '${{ toJSON(github.event.pull_request.labels) }}')" >> $GITHUB_ENV
-
-      - name: Bump version and publish
+      - name: Bump patch version and publish
+        if: contains(toJson(github.event.pull_request.labels.*.name), 'deploy')
         run: |
-          if contains( $LABELS, 'major' ); then
-            npm version major --preid=beta --force -m "Upgrade for major changes"
-          elif contains( $LABELS, 'minor' ); then
-            npm version minor --preid=beta --force -m "Upgrade for minor changes"
-          elif contains( $LABELS, 'patch' ); then
-            npm version patch --preid=beta --force -m "Upgrade for patches"
-          else
-            echo "No label or unknown label. Skipping publish."
-            exit 0
-          fi
+          npm version patch --preid=beta --force -m "Upgrade for patches"
           npm publish --tag beta
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
