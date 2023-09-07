@@ -39,17 +39,24 @@ jobs:
 
       - name: Bump version and publish
         run: |
-          if [[ "${{ github.event.label.name }}" == "major" ]]; then
-            npm version major --preid=beta --force -m "Upgrade for major changes"
-          elif [[ "${{ github.event.label.name }}" == "minor" ]]; then
-            npm version minor --preid=beta --force -m "Upgrade for minor changes"
-          elif [[ "${{ github.event.label.name }}" == "patch" ]]; then
-            npm version patch --preid=beta --force -m "Upgrade for patches"
+          label=${{ steps.get-labels.outputs.label }}
+          echo "Found label: $label"
+
+          if [[ "$label" == "patch" ]]; then
+            echo "Publishing a patch version."
+            npm version patch
+            npm publish --tag beta
+          elif [[ "$label" == "minor" ]]; then
+            echo "Publishing a minor version."
+            npm version minor
+            npm publish --tag beta
+          elif [[ "$label" == "major" ]]; then
+            echo "Publishing a major version."
+            npm version major
+            npm publish --tag beta
           else
-            echo "No label or unknown label. Skipping publish."
-            exit 0
+            echo "No or incorrect label found. Skipping npm publish."
           fi
-          npm publish --tag beta
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
