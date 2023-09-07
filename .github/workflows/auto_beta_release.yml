@@ -1,9 +1,11 @@
 name: Automated Beta Release
 
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
-      - test-branch
+      - main
 
 jobs:
   build_and_publish:
