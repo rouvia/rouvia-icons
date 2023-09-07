@@ -29,7 +29,8 @@ jobs:
           echo "Labels on PR: $labels"
           echo "PR_LABELS=$labels" >> $GITHUB_ENV
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
       - name: Install dependencies
         run: npm install
 
