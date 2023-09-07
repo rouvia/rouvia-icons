@@ -24,7 +24,8 @@ jobs:
 
       - name: Debug labels
         run: |
-          echo "Pull Request Object: ${{ toJSON(github.event.pull_request) }}"
+          echo "Pull Request Object: ${{ toJSON(github.event.pull_request.labels) }}"
+          echo "Pull Request Object: ${{ contains( toJSON(github.event.pull_request.labels), 'patch' ) }}"
 
       - name: Install dependencies
         run: npm install
