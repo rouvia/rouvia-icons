@@ -22,11 +22,6 @@ jobs:
           node-version: 18
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Debug labels
-        run: |
-          echo "Pull Request Object: ${{ toJSON(github.event.pull_request.labels) }}"
-          echo "Pull Request Object: ${{ contains( toJSON(github.event.pull_request.labels), 'patch' ) }}"
-
       - name: Install dependencies
         run: npm install
 
@@ -35,11 +30,12 @@ jobs:
 
       - name: Bump version and publish
         run: |
-          if contains( github.event.pull_request.labels.*.name, 'major' ); then
+          LABELS= toJSON(github.event.pull_request.labels)
+          if contains( $LABELS, 'major' ); then
             npm version major --preid=beta --force -m "Upgrade for major changes"
-          elif contains( github.event.pull_request.labels.*.name, 'minor' ); then
+          elif contains( $LABELS, 'minor' ); then
             npm version minor --preid=beta --force -m "Upgrade for minor changes"
-          elif contains( github.event.pull_request.labels.*.name, 'patch' ); then
+          elif contains( $LABELS, 'patch' ); then
             npm version patch --preid=beta --force -m "Upgrade for patches"
           else
             echo "No label or unknown label. Skipping publish."
