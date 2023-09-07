@@ -28,9 +28,11 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Get PR Labels
+        run: echo "LABELS=$(echo '${{ toJSON(github.event.pull_request.labels) }}')" >> $GITHUB_ENV
+
       - name: Bump version and publish
         run: |
-          LABELS= toJSON(github.event.pull_request.labels)
           if contains( $LABELS, 'major' ); then
             npm version major --preid=beta --force -m "Upgrade for major changes"
           elif contains( $LABELS, 'minor' ); then
