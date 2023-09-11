@@ -2,7 +2,7 @@ name: Publish NPM Package
 
 on:
   release:
-    types: [published, edited, prereleased]
+    types: [published]
 
 jobs:
   publish:
@@ -25,18 +25,7 @@ jobs:
         id: get_version
         run: echo "::set-output name=VERSION::${GITHUB_REF#refs/tags/}"
 
-      # Publish beta package when draft release is edited or prereleased
-      - name: Publish Beta Package
-        if: github.event.action == 'edited' || github.event.action == 'prereleased'
-        run: |
-          npm version --no-git-tag-version ${{ steps.get_version.outputs.VERSION }}-beta
-          npm publish --tag beta
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      # Publish official package when draft release is published
       - name: Publish Official Package
-        if: github.event.action == 'published'
         run: |
           npm version --no-git-tag-version ${{ steps.get_version.outputs.VERSION }}
           npm publish
