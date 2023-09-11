@@ -1,0 +1,32 @@
+name: Manual Beta Publish to NPM
+
+on:
+  workflow_dispatch:
+    inputs:
+      draft_version:
+        description: 'Draft version to publish as beta (e.g., 1.2.3)'
+        required: true
+
+jobs:
+  publish_beta:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.0.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3.8.1
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Publish Beta Package
+        run: |
+          npm version --no-git-tag-version ${{ github.event.inputs.draft_version }}-beta
+          npm publish --tag beta
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
