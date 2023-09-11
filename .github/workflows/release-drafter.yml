@@ -1,4 +1,5 @@
 name: Draft Release
+run-name: 'Draft Release'
 
 on:
   push:

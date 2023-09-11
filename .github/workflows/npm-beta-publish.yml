@@ -6,6 +6,11 @@ on:
       draft_version:
         description: 'Draft version to publish as beta (e.g., 1.2.3)'
         required: true
+      beta_version:
+        description: 'Current beta version for this release (e.g 0)'
+        required: true
+
+run-name: 'Manual Beta Publish to NPM {{inputs.draft_version}}'
 
 jobs:
   publish_beta:
@@ -29,9 +34,7 @@ jobs:
 
       - name: Publish Beta Package
         run: |
-          npm version --no-git-tag-version ${{ github.event.inputs.draft_version }}-beta
+          npm version --no-git-tag-version ${{ github.event.inputs.draft_version }}-beta${{github.event.inputs.beta_version}}
           npm publish --tag beta
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-run-name: Manual Beta Publish to NPM {{inputs.draft_version}}
