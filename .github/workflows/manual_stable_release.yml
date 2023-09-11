@@ -1,40 +1,40 @@
-name: Manual Stable Release
-
-on:
-  workflow_dispatch:
-
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 18
-          registry-url: 'https://registry.npmjs.org'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build
-        run: npm run build
-
-      - name: Read package.json version
-        id: package_version
-        run: echo "::set-output name=version::$(node -p "require('./package.json').version")"
-
-      - name: Publish to npm
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Create GitHub Release
-        run: |
-          version=${{ steps.package_version.outputs.version }}
-          gh release create v$version -t "Stable Release v$version" -n "Stable Release v$version"
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+#name: Manual Stable Release
+#
+#on:
+#  workflow_dispatch:
+#
+#jobs:
+#  publish:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v2
+#
+#      - name: Setup Node.js
+#        uses: actions/setup-node@v1
+#        with:
+#          node-version: 18
+#          registry-url: 'https://registry.npmjs.org'
+#
+#      - name: Install dependencies
+#        run: npm install
+#
+#      - name: Build
+#        run: npm run build
+#
+#      - name: Read package.json version
+#        id: package_version
+#        run: echo "::set-output name=version::$(node -p "require('./package.json').version")"
+#
+#      - name: Publish to npm
+#        run: npm publish
+#        env:
+#          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+#
+#      - name: Create GitHub Release
+#        run: |
+#          version=${{ steps.package_version.outputs.version }}
+#          gh release create v$version -t "Stable Release v$version" -n "Stable Release v$version"
+#        env:
+#          GH_TOKEN: ${{ secrets.GH_TOKEN }}

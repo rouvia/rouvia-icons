@@ -1,44 +1,44 @@
-name: Automated Beta Release
-
-on:
-  pull_request:
-    types:
-      - closed
-    branches:
-      - main
-
-jobs:
-  build_and_publish:
-    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 18
-          registry-url: 'https://registry.npmjs.org'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build
-        run: npm run build
-
-      - name: Bump patch version and publish
-        if: contains(toJson(github.event.pull_request.labels.*.name), 'deploy')
-        run: |
-          npm version patch --preid=beta --force -m "Upgrade for patches"
-          npm publish --tag beta
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Create GitHub Release
-        run: |
-          version=$(node -p "require('./package.json').version")
-          gh release create v$version -t "Beta Release v$version" -n "Beta Release v$version"
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+#name: Automated Beta Release
+#
+#on:
+#  pull_request:
+#    types:
+#      - closed
+#    branches:
+#      - main
+#
+#jobs:
+#  build_and_publish:
+#    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v2
+#
+#      - name: Setup Node.js
+#        uses: actions/setup-node@v1
+#        with:
+#          node-version: 18
+#          registry-url: 'https://registry.npmjs.org'
+#
+#      - name: Install dependencies
+#        run: npm install
+#
+#      - name: Build
+#        run: npm run build
+#
+#      - name: Bump patch version and publish
+#        if: contains(toJson(github.event.pull_request.labels.*.name), 'deploy')
+#        run: |
+#          npm version patch --preid=beta --force -m "Upgrade for patches"
+#          npm publish --tag beta
+#        env:
+#          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+#
+#      - name: Create GitHub Release
+#        run: |
+#          version=$(node -p "require('./package.json').version")
+#          gh release create v$version -t "Beta Release v$version" -n "Beta Release v$version"
+#        env:
+#          GH_TOKEN: ${{ secrets.GH_TOKEN }}
