@@ -1,6 +1,6 @@
 {
   "name": "@rouvia/icons",
-  "version": "0.0.5-beta.0",
+  "version": "0.0.6",
   "main": "dist/icons.umd.js",
   "module": "dist/icons.mjs",
   "types": "dist/index.d.ts",

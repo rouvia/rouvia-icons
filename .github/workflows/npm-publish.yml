@@ -1,0 +1,44 @@
+name: Publish NPM Package
+
+on:
+  release:
+    types: [published, edited, prereleased]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.0.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3.8.1
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Extract version from GitHub release
+        id: get_version
+        run: echo "::set-output name=VERSION::${GITHUB_REF#refs/tags/}"
+
+      # Publish beta package when draft release is edited or prereleased
+      - name: Publish Beta Package
+        if: github.event.action == 'edited' || github.event.action == 'prereleased'
+        run: |
+          npm version --no-git-tag-version ${{ steps.get_version.outputs.VERSION }}-beta
+          npm publish --tag beta
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Publish official package when draft release is published
+      - name: Publish Official Package
+        if: github.event.action == 'published'
+        run: |
+          npm version --no-git-tag-version ${{ steps.get_version.outputs.VERSION }}
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
