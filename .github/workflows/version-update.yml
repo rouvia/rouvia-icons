@@ -1,0 +1,61 @@
+name: Version Update & NPM publish
+run-name:
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  version_update:
+    name: App Version Update
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Set NPM version and push changes
+        run: |
+          git config --global user.name "rouvia-bot"
+          git config --global user.email "dev@rouvia.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          git fetch --all --tags
+          LATEST_RELEASE=$(git branch -r | grep -o "release/[0-9.]*$" | sort --version-sort | tail -1)
+          git checkout $LATEST_RELEASE
+          npm version ${{github.ref_name}}
+          git push
+
+  publish:
+    name: Publish to NPM
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.0.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3.8.1
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Extract version from GitHub release
+        id: get_version
+        run: echo "::set-output name=VERSION::${GITHUB_REF#refs/tags/}"
+
+      - name: Publish Official Package
+        run: |
+          npm version --no-git-tag-version ${{ steps.get_version.outputs.VERSION }}
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
