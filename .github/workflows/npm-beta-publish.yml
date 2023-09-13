@@ -10,7 +10,7 @@ on:
         description: 'Current beta version for this release (e.g 0)'
         required: true
 
-run-name: 'Beta NPM ${{inputs.draft_version}}-beta${{inputs.beta_version}}'
+run-name: 'Publish NPM beta ${{inputs.draft_version}}-beta${{inputs.beta_version}}'
 
 jobs:
   publish_beta:
