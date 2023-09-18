@@ -29,4 +29,11 @@ const MyApp = () => {
 You can find the list of all available icons [here](https://rouvia.github.io/rouvia-icons/?path=/story/icons--icons-gallery).
 
 ## Customization
-All svg colors have fill=`currentColor` so they will always the color assigned to their parrent elements. 
+All svg colors have fill=`currentColor` so they will always have the color assigned to their parrent elements. 
+
+
+
+
+
+
+
