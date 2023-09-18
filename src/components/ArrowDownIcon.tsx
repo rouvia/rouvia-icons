@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 import { ReactComponent as Icon } from '../assets/arrow-down.svg';
 
-const ArrowDownIcon: React.FC = () => {
-  return <Icon />;
+const ArrowDownIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+  return <Icon {...props} />;
 };
 
 export { ArrowDownIcon };

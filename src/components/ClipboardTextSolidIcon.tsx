@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 import { ReactComponent as Icon } from '../assets/clipboard-text_solid.svg';
 
-const ClipboardTextSolidIcon: React.FC = () => {
-  return <Icon />;
+const ClipboardTextSolidIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+  return <Icon {...props} />;
 };
 
 export { ClipboardTextSolidIcon };

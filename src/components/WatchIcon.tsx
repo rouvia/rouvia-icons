@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 import { ReactComponent as Icon } from '../assets/watch.svg';
 
-const WatchIcon: React.FC = () => {
-  return <Icon />;
+const WatchIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+  return <Icon {...props} />;
 };
 
 export { WatchIcon };

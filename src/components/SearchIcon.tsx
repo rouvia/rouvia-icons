@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 import { ReactComponent as Icon } from '../assets/search.svg';
 
-const SearchIcon: React.FC = () => {
-  return <Icon />;
+const SearchIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+  return <Icon {...props} />;
 };
 
 export { SearchIcon };

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 import { ReactComponent as Icon } from '../assets/money.svg';
 
-const MoneyIcon: React.FC = () => {
-  return <Icon />;
+const MoneyIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+  return <Icon {...props} />;
 };
 
 export { MoneyIcon };

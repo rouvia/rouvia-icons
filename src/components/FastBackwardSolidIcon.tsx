@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 import { ReactComponent as Icon } from '../assets/fast-backward_solid.svg';
 
-const FastBackwardSolidIcon: React.FC = () => {
-  return <Icon />;
+const FastBackwardSolidIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+  return <Icon {...props} />;
 };
 
 export { FastBackwardSolidIcon };

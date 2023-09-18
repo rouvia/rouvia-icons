@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 import { ReactComponent as Icon } from '../assets/user-add_solid.svg';
 
-const UserAddSolidIcon: React.FC = () => {
-  return <Icon />;
+const UserAddSolidIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+  return <Icon {...props} />;
 };
 
 export { UserAddSolidIcon };

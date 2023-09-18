@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 import { ReactComponent as Icon } from '../assets/shield.svg';
 
-const ShieldIcon: React.FC = () => {
-  return <Icon />;
+const ShieldIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+  return <Icon {...props} />;
 };
 
 export { ShieldIcon };
