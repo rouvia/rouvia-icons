@@ -5,6 +5,4 @@ const AlarmIcon: React.FC = () => {
   return <Icon />;
 };
 
-//Testing a comment
-
 export { AlarmIcon };

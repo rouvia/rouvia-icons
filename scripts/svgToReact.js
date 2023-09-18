@@ -2,14 +2,23 @@ const fs = require("fs");
 const path = require("path");
 
 // Source and destination directories
-const svgDir = "./assets"; // the current directory
-const componentsDir = "./components";
+const svgDir = "src/assets";
+const componentsDir = "src/components";
+
+const replaceFillColorInSvg = (filePath) => {
+  const fileContent = fs.readFileSync(filePath, "utf8");
+  const updatedContent = fileContent.replace(
+    /fill="[^"]*"/g,
+    'fill="currentColor"'
+  );
+  fs.writeFileSync(filePath, updatedContent);
+};
 
 // Convert a filename to camelCase
 const toPascalCase = (str) => {
   return str
-    .replace(/[-_](.)/g, (_, p1) => p1.toUpperCase()) // Convert underscore/hyphen followed by a letter to uppercase
-    .replace(/(^[a-z])/, (_, p1) => p1.toUpperCase()); // Convert the first letter to uppercase
+    .replace(/[-_](.)/g, (_, p1) => p1.toUpperCase())
+    .replace(/(^[a-z])/, (_, p1) => p1.toUpperCase());
 };
 
 // Check if componentsDir exists; if not, create it
@@ -26,6 +35,11 @@ fs.readdir(svgDir, (err, files) => {
 
   files.forEach((file) => {
     if (path.extname(file) === ".svg") {
+      const filePath = path.join(svgDir, file);
+
+      // Replace fill colors in SVG file
+      replaceFillColorInSvg(filePath);
+
       const componentName = `${toPascalCase(path.basename(file, ".svg"))}Icon`;
       const componentFileName = `${componentName}.tsx`;
 
