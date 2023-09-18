@@ -5,19 +5,22 @@ const path = require("path");
 const svgDir = "src/assets";
 const componentsDir = "src/components";
 
-const replaceFillColorInSvg = (filePath) => {
+const replaceColorInSvg = (filePath) => {
   const fileContent = fs.readFileSync(filePath, "utf8");
+
+  // Replace all hex colors (both 3-digit and 6-digit) with 'currentColor'
   const updatedContent = fileContent.replace(
-    /fill="[^"]*"/g,
-    'fill="currentColor"'
+    /#([0-9a-fA-F]{3}){1,2}/g,
+    "currentColor"
   );
+
   fs.writeFileSync(filePath, updatedContent);
 };
 
 // Convert a filename to camelCase
 const toPascalCase = (str) => {
   return str
-    .replace(/[-_](.)/g, (_, p1) => p1.toUpperCase())
+    .replace(/[-_\s](.)/g, (_, p1) => p1.toUpperCase())
     .replace(/(^[a-z])/, (_, p1) => p1.toUpperCase());
 };
 
@@ -38,7 +41,7 @@ fs.readdir(svgDir, (err, files) => {
       const filePath = path.join(svgDir, file);
 
       // Replace fill colors in SVG file
-      replaceFillColorInSvg(filePath);
+      replaceColorInSvg(filePath);
 
       const componentName = `${toPascalCase(path.basename(file, ".svg"))}Icon`;
       const componentFileName = `${componentName}.tsx`;
@@ -58,7 +61,12 @@ fs.readdir(svgDir, (err, files) => {
               err
             );
           } else {
-            console.log(`Successfully generated ${componentName}`);
+            console.log(
+              `Successfully generated ${componentName} ${path.basename(
+                file,
+                ".svg"
+              )}`
+            );
           }
         }
       );
