@@ -1,2 +1,0 @@
-import{j as s}from"./jsx-runtime-ffb262ed.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";const a=()=>s.jsx("div",{children:"hey"}),c={title:"Button",component:a},r=()=>s.jsx(a,{});var o,t,e;r.parameters={...r.parameters,docs:{...(o=r.parameters)==null?void 0:o.docs,source:{originalSource:"() => <Component />",...(e=(t=r.parameters)==null?void 0:t.docs)==null?void 0:e.source}}};const i=["Primary"];export{r as Primary,i as __namedExportsOrder,c as default};
-//# sourceMappingURL=Button.stories-e210905c.js.map
