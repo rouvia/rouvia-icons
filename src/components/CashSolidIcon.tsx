@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 import { ReactComponent as Icon } from '../assets/cash_solid.svg';
 
-const CashSolidIcon: React.FC = () => {
-  return <Icon />;
+const CashSolidIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+  return <Icon {...props} />;
 };
 
 export { CashSolidIcon };

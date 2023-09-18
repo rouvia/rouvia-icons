@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 import { ReactComponent as Icon } from '../assets/drag-horizontal.svg';
 
-const DragHorizontalIcon: React.FC = () => {
-  return <Icon />;
+const DragHorizontalIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+  return <Icon {...props} />;
 };
 
 export { DragHorizontalIcon };

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 import { ReactComponent as Icon } from '../assets/bag-alt_solid.svg';
 
-const BagAltSolidIcon: React.FC = () => {
-  return <Icon />;
+const BagAltSolidIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+  return <Icon {...props} />;
 };
 
 export { BagAltSolidIcon };

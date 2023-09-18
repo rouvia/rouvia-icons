@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 import { ReactComponent as Icon } from '../assets/thin-arrow-down.svg';
 
-const ThinArrowDownIcon: React.FC = () => {
-  return <Icon />;
+const ThinArrowDownIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+  return <Icon {...props} />;
 };
 
 export { ThinArrowDownIcon };

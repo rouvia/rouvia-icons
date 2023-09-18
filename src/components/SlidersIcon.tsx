@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 import { ReactComponent as Icon } from '../assets/sliders.svg';
 
-const SlidersIcon: React.FC = () => {
-  return <Icon />;
+const SlidersIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+  return <Icon {...props} />;
 };
 
 export { SlidersIcon };

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 import { ReactComponent as Icon } from '../assets/stop_solid.svg';
 
-const StopSolidIcon: React.FC = () => {
-  return <Icon />;
+const StopSolidIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+  return <Icon {...props} />;
 };
 
 export { StopSolidIcon };

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 import { ReactComponent as Icon } from '../assets/user-add.svg';
 
-const UserAddIcon: React.FC = () => {
-  return <Icon />;
+const UserAddIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+  return <Icon {...props} />;
 };
 
 export { UserAddIcon };

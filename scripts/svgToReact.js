@@ -47,7 +47,7 @@ fs.readdir(svgDir, (err, files) => {
       const componentFileName = `${componentName}.tsx`;
 
       // Create the React component string
-      const componentString = `import React from 'react';\nimport { ReactComponent as Icon } from '../assets/${file}';\n\nconst ${componentName}: React.FC = () => {\n  return <Icon />;\n};\n\nexport { ${componentName} };\n`;
+      const componentString = `import React, { SVGProps } from 'react';\nimport { ReactComponent as Icon } from '../assets/${file}';\n\nconst ${componentName}: React.FC<SVGProps<SVGSVGElement>> = (props) => {\n  return <Icon {...props} />;\n};\n\nexport { ${componentName} };\n`;
 
       // Write the component file
       fs.writeFile(

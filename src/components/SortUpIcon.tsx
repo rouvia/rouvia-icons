@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 import { ReactComponent as Icon } from '../assets/sort-up.svg';
 
-const SortUpIcon: React.FC = () => {
-  return <Icon />;
+const SortUpIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+  return <Icon {...props} />;
 };
 
 export { SortUpIcon };

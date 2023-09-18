@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 import { ReactComponent as Icon } from '../assets/arrow-left-up.svg';
 
-const ArrowLeftUpIcon: React.FC = () => {
-  return <Icon />;
+const ArrowLeftUpIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+  return <Icon {...props} />;
 };
 
 export { ArrowLeftUpIcon };

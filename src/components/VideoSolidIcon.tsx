@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 import { ReactComponent as Icon } from '../assets/video_solid.svg';
 
-const VideoSolidIcon: React.FC = () => {
-  return <Icon />;
+const VideoSolidIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+  return <Icon {...props} />;
 };
 
 export { VideoSolidIcon };

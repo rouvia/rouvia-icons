@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 import { ReactComponent as Icon } from '../assets/database_solid.svg';
 
-const DatabaseSolidIcon: React.FC = () => {
-  return <Icon />;
+const DatabaseSolidIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+  return <Icon {...props} />;
 };
 
 export { DatabaseSolidIcon };
