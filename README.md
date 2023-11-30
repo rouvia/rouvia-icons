@@ -1,14 +1,17 @@
 # @rouvia/icons
-[A collection of SVG icons](https://rouvia.github.io/rouvia-icons/?path=/story/icons--icons-gallery) designed to be easy to use and extend in web projects. 
+[A collection of SVG icons 🫶](https://rouvia.github.io/rouvia-icons/?path=/story/icons--icons-gallery) designed to be easy to use and extend in web projects. 
 Created with love and care by the Rouvia team.
 
 ## Installation
-Install the package via npm or yarn:
+Install the package via npm:
 
 ```console
-Copy code
 npm install @rouvia/icons --save
-# OR
+```
+
+or yarn
+
+```console
 yarn add @rouvia/icons
 ```
 
