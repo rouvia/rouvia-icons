@@ -2,10 +2,10 @@ const fs = require("fs");
 const path = require("path");
 
 // The directory containing your React components
-const componentsDir = "./components";
+const componentsDir = "../src/components";
 
 // Directory where the index.ts file will be generated
-const indexDir = "./";
+const indexDir = "../src";
 
 // Initialize the content of the index file
 let indexContent = "";
@@ -26,7 +26,7 @@ fs.readdir(path.join(__dirname, componentsDir), (err, files) => {
 
   // Write the index file in the src directory
   fs.writeFile(
-    path.join(__dirname, "..", "index.ts"),
+    path.join(__dirname, indexDir, "index.ts"),
     indexContent,
     "utf8",
     (err) => {
@@ -35,6 +35,6 @@ fs.readdir(path.join(__dirname, componentsDir), (err, files) => {
       } else {
         console.log("Successfully generated index.ts");
       }
-    }
+    },
   );
 });
