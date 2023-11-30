@@ -4,8 +4,9 @@ import * as AllIcons from "../index";
 type TProps = {
   Icon: React.ComponentType<object>;
   iconKey: string;
+  isSearchedFor: boolean;
 };
-const IconWrapper: React.FC<TProps> = ({ Icon, iconKey }) => {
+const IconWrapper: React.FC<TProps> = ({ Icon, iconKey, isSearchedFor }) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [isIconCopied, setIsIconCopied] = useState<boolean>(false);
 
@@ -27,7 +28,8 @@ const IconWrapper: React.FC<TProps> = ({ Icon, iconKey }) => {
         fontFamily: "Arial",
         fontSize: 14,
         position: "relative",
-        transition: "all 0.2s ease-out",
+        padding: isSearchedFor ? undefined : "1px",
+        border: isSearchedFor ? "1px solid #272937" : undefined,
         borderRadius: "8px",
       }}
       onMouseEnter={() => setIsHovered(true)}
@@ -68,7 +70,8 @@ const IconWrapper: React.FC<TProps> = ({ Icon, iconKey }) => {
       )}
       <div
         style={{
-          color: "#272937",
+          transition: "color 0.2s ease-out",
+          color: isSearchedFor ? "#ec5b5e" : "#272937",
           borderRadius: "8px",
         }}
       >
