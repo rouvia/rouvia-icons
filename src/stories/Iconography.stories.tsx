@@ -12,7 +12,7 @@ const Component = () => {
   return (
     <div>
       <input
-        style={{ borderRadius: "8px", width: "200px" }}
+        style={{ borderRadius: "8px", width: "200px", padding: "4px 8px" }}
         placeholder={"Search.."}
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
