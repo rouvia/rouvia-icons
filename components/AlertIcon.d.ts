@@ -1,3 +1,3 @@
-import React from 'react';
-declare const AlertIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const AlertIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { AlertIcon };

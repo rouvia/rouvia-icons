@@ -1,3 +1,3 @@
-import React from 'react';
-declare const MoodSadIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const MoodSadIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { MoodSadIcon };

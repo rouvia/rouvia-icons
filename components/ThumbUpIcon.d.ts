@@ -1,3 +1,3 @@
-import React from 'react';
-declare const ThumbUpIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const ThumbUpIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { ThumbUpIcon };

@@ -1,3 +1,3 @@
-import React from 'react';
-declare const FlagSolidIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const FlagSolidIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { FlagSolidIcon };

@@ -1,3 +1,3 @@
-import React from 'react';
-declare const CursorIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const CursorIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { CursorIcon };

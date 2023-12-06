@@ -1,3 +1,3 @@
-import React from 'react';
-declare const BookmarkIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const BookmarkIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { BookmarkIcon };

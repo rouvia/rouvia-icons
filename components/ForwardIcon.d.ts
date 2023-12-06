@@ -1,3 +1,3 @@
-import React from 'react';
-declare const ForwardIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const ForwardIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { ForwardIcon };

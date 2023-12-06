@@ -1,3 +1,3 @@
-import React from 'react';
-declare const UploadIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const UploadIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { UploadIcon };

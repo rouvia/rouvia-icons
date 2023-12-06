@@ -1,3 +1,3 @@
-import React from 'react';
-declare const HeadphonesMicroIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const HeadphonesMicroIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { HeadphonesMicroIcon };

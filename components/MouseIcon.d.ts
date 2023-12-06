@@ -1,3 +1,3 @@
-import React from 'react';
-declare const MouseIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const MouseIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { MouseIcon };

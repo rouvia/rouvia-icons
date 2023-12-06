@@ -1,3 +1,3 @@
-import React from 'react';
-declare const RefreshIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const RefreshIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { RefreshIcon };

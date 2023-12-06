@@ -1,3 +1,3 @@
-import React from 'react';
-declare const LayersIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const LayersIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { LayersIcon };

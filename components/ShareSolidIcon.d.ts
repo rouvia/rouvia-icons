@@ -1,3 +1,3 @@
-import React from 'react';
-declare const ShareSolidIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const ShareSolidIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { ShareSolidIcon };

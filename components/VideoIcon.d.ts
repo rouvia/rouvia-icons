@@ -1,3 +1,3 @@
-import React from 'react';
-declare const VideoIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const VideoIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { VideoIcon };

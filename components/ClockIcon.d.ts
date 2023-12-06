@@ -1,3 +1,3 @@
-import React from 'react';
-declare const ClockIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const ClockIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { ClockIcon };

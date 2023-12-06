@@ -1,3 +1,3 @@
-import React from 'react';
-declare const HouseAltSolidIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const HouseAltSolidIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { HouseAltSolidIcon };

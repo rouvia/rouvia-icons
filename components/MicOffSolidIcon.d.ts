@@ -1,3 +1,3 @@
-import React from 'react';
-declare const MicOffSolidIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const MicOffSolidIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { MicOffSolidIcon };

@@ -1,3 +1,3 @@
-import React from 'react';
-declare const CircleArrowLeftIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const CircleArrowLeftIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { CircleArrowLeftIcon };

@@ -1,3 +1,3 @@
-import React from 'react';
-declare const SoundOffIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const SoundOffIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { SoundOffIcon };

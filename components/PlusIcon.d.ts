@@ -1,3 +1,3 @@
-import React from 'react';
-declare const PlusIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const PlusIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { PlusIcon };

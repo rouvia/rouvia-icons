@@ -1,3 +1,3 @@
-import React from 'react';
-declare const MyLocationSolidIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const MyLocationSolidIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { MyLocationSolidIcon };

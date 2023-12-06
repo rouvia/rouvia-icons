@@ -1,3 +1,3 @@
-import React from 'react';
-declare const LockSolidIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const LockSolidIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { LockSolidIcon };

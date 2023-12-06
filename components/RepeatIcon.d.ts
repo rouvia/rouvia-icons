@@ -1,3 +1,3 @@
-import React from 'react';
-declare const RepeatIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const RepeatIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { RepeatIcon };

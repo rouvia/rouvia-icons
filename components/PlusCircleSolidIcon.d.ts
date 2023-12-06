@@ -1,3 +1,3 @@
-import React from 'react';
-declare const PlusCircleSolidIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const PlusCircleSolidIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { PlusCircleSolidIcon };

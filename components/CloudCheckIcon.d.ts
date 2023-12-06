@@ -1,3 +1,3 @@
-import React from 'react';
-declare const CloudCheckIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const CloudCheckIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { CloudCheckIcon };

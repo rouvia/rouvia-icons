@@ -1,3 +1,3 @@
-import React from 'react';
-declare const EditIcon: React.FC;
+import React, { SVGProps } from 'react';
+declare const EditIcon: React.FC<SVGProps<SVGSVGElement>>;
 export { EditIcon };
